@@ -1,0 +1,6 @@
+{
+  "name": "DeliverAI Pro",
+  "description": "AI-Powered Productivity Workspace that transforms raw information, documents, and recordings into structured, professional deliverables using Gemini AI.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

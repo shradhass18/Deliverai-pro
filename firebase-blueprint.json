@@ -1,0 +1,47 @@
+{
+  "collections": {
+    "users": {
+      "description": "Premium subscriber personal profiles and credentials meta",
+      "fields": {
+        "uid": "string - unique auth key identifying the user",
+        "name": "string - displaying full name",
+        "email": "string - client address pointer",
+        "avatarUrl": "string - optional modern picture path",
+        "createdAt": "timestamp"
+      }
+    },
+    "deliverables": {
+      "description": "AI Workspace processed deliverables containing study guides, emails, and briefs",
+      "fields": {
+        "id": "string - unique key identifier",
+        "ownerId": "string - references authenticated developer userId",
+        "inputText": "string - raw text index or prompt material",
+        "deliverableType": "string - report, email, study_notes, outline, briefing",
+        "tone": "string - tone variant description",
+        "professional": "string - professional parsed markdown guide",
+        "executive": "string - executive concise bluf",
+        "academic": "string - theoretical academic analysis",
+        "summary": "string - immediate brief content description",
+        "qualityScores": "map - calculated metric values (readability, clarity, completeness, professionalism)",
+        "productivityInsights": "map - time savings, found deadlines, decisions, and action keys",
+        "createdAt": "string - formatted timestamp string",
+        "file": "map - optional uploaded file data (name, types, base64 data)"
+      }
+    },
+    "history": {
+      "description": "Historical log entries of generated deliverables for tracing and user feed tracking",
+      "fields": {
+        "id": "string - unique identifier for the history entry",
+        "ownerId": "string - references authenticated developer userId",
+        "deliverableId": "string - id of the corresponding deliverable",
+        "uid": "string - user identifier (auth.uid)",
+        "name": "string - user display name",
+        "email": "string - user email address",
+        "deliverableType": "string - e.g. email, report, meeting_minutes, study_notes",
+        "generatedOutput": "string - primary or professional format output",
+        "inputText": "string - input prompt or text source",
+        "timestamp": "string - ISO creation timestamp"
+      }
+    }
+  }
+}

@@ -1,0 +1,29 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Default deny catch-all
+    match /{document=**} {
+      allow read, write: if false;
+    }
+    
+    // User profile rule: Match authenticated userId
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // Deliverables document rule: Owners can read, write or create their records, referencing request.auth.uid and ownerId
+    match /deliverables/{deliverableId} {
+      allow read, update: if request.auth != null && resource.data.ownerId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.ownerId == request.auth.uid;
+      allow delete: if request.auth != null && (resource == null || resource.data.ownerId == request.auth.uid);
+    }
+    
+    // History document rule: Owners can read, write or delete their records referencing request.auth.uid and ownerId
+    match /history/{historyId} {
+      allow read, update: if request.auth != null && resource.data.ownerId == request.auth.uid;
+      allow create: if request.auth != null && request.resource.data.ownerId == request.auth.uid;
+      allow delete: if request.auth != null && (resource == null || resource.data.ownerId == request.auth.uid);
+    }
+  }
+}
